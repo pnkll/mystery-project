@@ -1,8 +1,12 @@
-import {createRoot} from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import App from './App'
-import './index.scss'
+import './styles/index.scss'
+import { Theme } from './theme/ThemeContext'
+import ThemeProvider from './theme/ThemeProvider'
 
 const container = document.querySelector('#root')
 const root = createRoot(container)
 
-root.render(<App/>)
+root.render(<ThemeProvider>
+    <App />
+</ThemeProvider>)
