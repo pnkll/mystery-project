@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import Main from './pages/Main/Main'
 import { Suspense, useState } from 'react'
-import { AboutLazy } from './pages/About/About.lazy'
-import useTheme from './theme/useTheme'
-import { classNames } from './helpers/classNames'
+import { classNames } from 'shared/lib/classNames'
+import { useTheme } from 'app/providers/ThemeProvider'
+import { AboutPage } from 'pages/AboutPage'
+import { MainPage } from 'pages/MainPage'
+import { AppRouter } from './providers/router'
 
 
 
@@ -15,12 +16,9 @@ export default function App() {
             <button onClick={toggleTheme}>Тема</button>
             <BrowserRouter>
                 <Link to={'about'}>about</Link>
-                <Link to={'main'}>main</Link>
+                <Link to={'/'}>main</Link>
                 <Suspense fallback={<>Loading...</>}>
-                    <Routes>
-                        <Route path='about' element={<AboutLazy />} />
-                        <Route path='main' element={<Main />} />
-                    </Routes>
+                    <AppRouter/>
                 </Suspense>
             </BrowserRouter>
         </div>
